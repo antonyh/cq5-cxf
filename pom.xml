@@ -1,0 +1,378 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>CXF-example</groupId>
+	<artifactId>CXF-example</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+	<name>Antony's CXF sample bundle</name>
+	<url>http://antonyh.co.uk/</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<!-- Apache CXF Dependencies -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>2.6.2</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-lang</groupId>
+					<artifactId>commons-lang</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.geronimo.specs</groupId>
+					<artifactId>geronimo-javamail_1.4_spec</artifactId>
+				</exclusion>
+				<!-- exclude spring dependencies -->
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-asm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-expression</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+				<!-- this is included in JDK 1.6 by default -->
+				<exclusion>
+					<groupId>com.sun.xml.bind</groupId>
+					<artifactId>jaxb-impl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>2.6.2</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-lang</groupId>
+					<artifactId>commons-lang</artifactId>
+				</exclusion>
+				<!-- exclude spring dependencies -->
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-asm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-expression</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-xjc</artifactId>
+			<version>2.2.6</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.2.6</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.xml.ws</groupId>
+			<artifactId>jaxws-api</artifactId>
+			<version>2.2.8</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.commons.log</artifactId>
+			<version>2.0.6</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.scr.annotations</artifactId>
+			<version>1.6.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>4.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
+
+		<dependency>
+			<groupId>javax.jcr</groupId>
+			<artifactId>jcr</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+			<version>1.4.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.sling</groupId>
+			<artifactId>org.apache.sling.commons.osgi</artifactId>
+			<version>2.0.2-incubator</version>
+			<type>bundle</type>
+			<scope>provided</scope>
+		</dependency>
+		
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+		
+		    <plugin>
+		        <groupId>org.apache.sling</groupId>
+		        <artifactId>maven-sling-plugin</artifactId>
+		        <executions>
+		          <execution>
+		            <id>install-bundle</id>
+		            <goals>
+		              <goal>install</goal>
+		            </goals>
+		          </execution> 
+		        </executions>
+		        <configuration>
+		        	<slingUrl>http://localhost:5503/system/console</slingUrl>
+		        </configuration>
+      		</plugin>
+		
+		
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.1.0</version>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<id>wrap-my-dependency</id>
+						<goals>
+							<goal>wrap</goal>
+						</goals>
+						<configuration>
+							<wrapImportPackage>;</wrapImportPackage>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<instructions>
+						<Export-Package>cxf_example.api</Export-Package>
+						<Private-Package>cxf_example.impl, cxf_example.util, net.webservicex</Private-Package>
+						<!-- bundle supplied resource prefixes -->
+            <Include-Resource>{maven-resources}</Include-Resource>
+
+            <!-- Do not inline jars, include as jar files -->
+            <Embed-Dependency>*;scope=compile|runtime;inline=false</Embed-Dependency>
+            <Embed-Transitive>true</Embed-Transitive>
+
+            <!-- use _exportcontents instead of Export-Package to avoid conflict with Embed-Dependency an inline=true -->
+<!--             <_exportcontents> -->
+<!--               org.apache.cxf.*;version=${project.version} -->
+<!--             </_exportcontents> -->
+
+            <!-- declare optional dependencies -->
+            <Import-Package>
+              com.sun.msv.*;resolution:=optional,
+              com.sun.xml.bind.marshaller.*;resolution:=optional,
+              com.sun.xml.fastinfoset.stax.*;resolution:=optional,
+              net.sf.cglib.*;resolution:=optional,
+              org.apache.aries.*;resolution:=optional,
+              org.apache.axiom.*;resolution:=optional,
+              org.apache.mina.*;resolution:=optional,
+              org.apache.log4j.spi.*;resolution:=optional,
+              org.apache.velocity.*;resolution:=optional,
+              org.osgi.service.blueprint.*;resolution:=optional,
+              org.junit.*;resolution:=optional,
+              org.relaxng.*;resolution:=optional,
+              org.slf4j.spi.*;resolution:=optional,
+              org.springframework.*;resolution:=optional,
+              javax.resource.*;resolution:=optional,
+              javax.mail.*;resolution:=optional,
+              javax.xml.ws.spi.http.*;resolution:=optional,
+              junit.framework.*;resolution:=optional,
+              com.sun.*;resolution:=optional,
+              sun.*;resolution:=optional,
+              org.apache.*;resolution:=optional,
+              org.jvnet.*;resolution:=optional,
+              *
+            </Import-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-scr-plugin</artifactId>
+				<version>1.7.2</version>
+				<executions>
+					<execution>
+						<id>generate-scr-scrdescriptor</id>
+						<goals>
+							<goal>scr</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- Apache CXF wsdl2java source generation -->
+			  <plugin>
+			    <groupId>org.apache.cxf</groupId>
+			    <artifactId>cxf-codegen-plugin</artifactId>
+			    <version>2.6.2</version>
+			    <executions>
+			      <execution>
+			        <id>generate-sources</id>
+			        <phase>generate-sources</phase>
+			        <configuration>
+			          <sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+			          <wsdlRoot>${basedir}/src/main/wsdl</wsdlRoot>
+			          <wsdlOptions>
+			          <wsdlOption>
+			          <wsdl>${basedir}/src/main/wsdl/stockquote.wsdl</wsdl>
+			          </wsdlOption>
+			          </wsdlOptions>
+			        </configuration>
+			        <goals>
+			          <goal>wsdl2java</goal>
+			        </goals>
+			      </execution>
+			    </executions>
+			  </plugin>
+						
+		</plugins>
+
+
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.felix
+										</groupId>
+										<artifactId>
+											maven-scr-plugin
+										</artifactId>
+										<versionRange>
+											[1.7.2,)
+										</versionRange>
+										<goals>
+											<goal>scr</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.cxf
+										</groupId>
+										<artifactId>
+											cxf-codegen-plugin
+										</artifactId>
+										<versionRange>
+											[${apache-cxf-version},)
+										</versionRange>
+										<goals>
+											<goal>wsdl2java</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+
+
+
+</project>
